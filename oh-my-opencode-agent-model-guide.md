@@ -4,6 +4,8 @@
 >
 > **适用版本**：oh-my-opencode v4.0.0+
 > **目标读者**：希望根据工作类型（通用开发 / 深度代码分析 / 架构设计）优化 Agent 模型配置的用户
+>
+> **注意**：配置文件名为 `oh-my-openagent.jsonc`，这是 oh-my-opencode 插件的配置标识，两者名称不同但属于同一工具链。
 
 ---
 
@@ -94,7 +96,7 @@ oh-my-opencode 内置 11 个可覆盖模型的 Agent，每个角色职责不同�
 | Agent | 职责 | 对模型的核心要求 |
 |-------|------|-----------------|
 | **Sisyphus** | 主调度器，分配任务、跟踪进度、协调 Agent | 全局理解力、判断决策力、多任务调度 |
-| **Atlas** | 快速执行者，处理中等复杂度任务 | 综合能力均衡、响应速度 |
+| **Atlas** | 快速执行者，中等复杂度任务、批量操作 | 均衡能力、快速响应、性价比 |
 | **Sisyphus-Junior** | 轻量执行者，单文件修改、简单任务 | 快速响应、准确执行 |
 
 ### 规划层
@@ -157,6 +159,8 @@ oh-my-opencode 内置 11 个可覆盖模型的 Agent，每个角色职责不同�
 }
 ```
 
+> **默认回退链**：未显式配置的 Agent 使用 oh-my-opencode 内置默认模型：Oracle → `glm-5.1`，Librarian → `qwen3.6-plus`，Explore → `qwen3.5-plus`，Atlas/Sisyphus-Junior → `qwen3.6-plus`，Multimodal-Looker → `kimi-k2.6`。
+
 ### 4.2 代码分析与修改场景（推荐）
 
 适合：重构项目、审计代码、复杂 Bug 修复、大规模代码迁移
@@ -171,6 +175,7 @@ oh-my-opencode 内置 11 个可覆盖模型的 Agent，每个角色职责不同�
 | **Momus** | `kimi-k2.6` | 审查计划是否可行，需要全局判断而非代码细节 |
 | **Metis** | `glm-5.1` | 预规划要识别架构风险，glm-5.1 逻辑推理最强 |
 | **Oracle** | `glm-5.1` | 复杂 Debug 和架构咨询需要最强抽象推理 |
+| **Multimodal-Looker** | `kimi-k2.6` | 多模态分析，需要视觉理解能力 |
 | **Librarian** | `qwen3.6-plus` | 检索代码示例，qwen 代码均衡且成本更低 |
 | **Explore** | `qwen3.5-plus` | 工具调用为主，轻量模型足够 |
 | **Atlas** | `qwen3.6-plus` | 中等任务执行，性价比最优 |
@@ -404,7 +409,7 @@ opencode .
 | 最强逻辑推理 | `glm-5.1` | `kimi-k2.6` |
 | 最快响应 | `mimo-v2.5` | `deepseek-v4-flash` |
 | 最佳性价比 | `qwen3.6-plus` | `qwen3.5-plus` |
-| 多模态（图片理解） | `minimax-m2.7` | `kimi-k2.6` |
+| 多模态（图片/设计稿） | `minimax-m2.7` | `kimi-k2.6` |
 
 ---
 
